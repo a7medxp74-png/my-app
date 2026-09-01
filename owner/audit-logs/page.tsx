@@ -1,0 +1,3 @@
+"use client";
+import { useEffect,useState } from "react";
+export default function AuditLogs(){const [d,setD]=useState<any[]>([]);useEffect(()=>{fetch('/api/owner/audit-logs').then(r=>r.json()).then(setD)},[]);return <div className="container"><h1 className="title">Audit Logs</h1><div className="card pad" style={{marginTop:16}}><div className="list">{d.map(x=><div key={x.id} className="row"><div><strong>{x.action}</strong><div className="tiny muted">{x.actor.name||x.actor.email} · {x.entity}</div></div><span className="tiny muted">{new Date(x.createdAt).toLocaleString('ar-EG')}</span></div>)}</div></div></div>}
